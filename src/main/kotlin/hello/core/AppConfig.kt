@@ -1,6 +1,7 @@
 package hello.core
 
 import hello.core.Order.OrderServiceImpl
+import hello.core.discount.FixDiscountPolicy
 import hello.core.discount.RateDiscountPolicy
 import hello.core.domain.OrderService
 import hello.core.repository.MemoryMemberRepository
@@ -12,10 +13,14 @@ import hello.core.service.MemberServiceImpl
  */
 class AppConfig {
     fun getMemberService(): MemberService {
-        return MemberServiceImpl(MemoryMemberRepository())
+        return MemberServiceImpl(memberRepository())
     }
 
     fun getOrderService(): OrderService {
-        return OrderServiceImpl(MemoryMemberRepository(), RateDiscountPolicy())
+        return OrderServiceImpl(memberRepository(), discountPolicy())
     }
+
+    private fun discountPolicy() = FixDiscountPolicy()
+
+    private fun memberRepository() = MemoryMemberRepository()
 }
