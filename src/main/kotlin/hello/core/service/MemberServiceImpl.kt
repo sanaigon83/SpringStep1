@@ -1,11 +1,9 @@
 package hello.core.service
 
 import hello.core.member.Member
-import hello.core.repository.MemoryMemberRepository
+import hello.core.repository.MemberRepository
 
-class MemberServiceImpl : MemberService {
-
-    val repo = MemoryMemberRepository()
+class MemberServiceImpl(val repo: MemberRepository) : MemberService {
 
     override fun join(member: Member) {
         return repo.save(member)

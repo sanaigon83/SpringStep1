@@ -11,8 +11,9 @@ import org.springframework.boot.runApplication
 class CoreApplication
 
 fun main(args: Array<String>) {
-    //runApplication<CoreApplication>(*args)
-    val memberService = MemberServiceImpl()
+    //runApplication<CoreApplication>(*
+    val appConfig = AppConfig()
+    val memberService = appConfig.getMemberService()
     val member = Member(1, "jkpark", Grade.VIP)
     memberService.join(member)
 
